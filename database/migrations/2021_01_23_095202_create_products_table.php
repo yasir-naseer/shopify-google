@@ -31,6 +31,7 @@ class CreateProductsTable extends Migration
             $table->text('variants')->nullable();
             $table->text('status')->nullable();
             $table->text('shopify_id')->nullable();
+            $table->string('shop_id')->nullable();
             $table->timestamps();
         });
     }

@@ -461,6 +461,7 @@ class ProductController extends Controller
         $product->sku = $request->sku;
         $product->barcode = $request->barcode;
         $product->status =  $request->input('status');
+        $product->shop_id = Auth::user()->id;
 
         if ($request->variants) {
             $product->variants = $request->variants;
@@ -1023,6 +1024,7 @@ class ProductController extends Controller
         }
 
         $p->title = $product->title;
+        $p->shop_id = Auth::user()->id;
         $p->shopify_id = $product->id;
         $p->description = $product->body_html;
         $p->price = $product->variants[0]->price;
