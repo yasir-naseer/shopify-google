@@ -658,7 +658,7 @@ class ProductController extends Controller
                     "variants" => $variants_array,
                     "options" => $options_array,
                     "images" => $images_array,
-                    "statusd"=>  $published
+                    "status"=>  $published
                 ]
             ];
 
@@ -876,14 +876,19 @@ class ProductController extends Controller
         $product->status = $request->input('status');
         $product->save();
         if($product->status == 1)
-            $published = 'publish';
+            $published = true;
         else
-            $published = 'draft';
+            $published = false;
 
 
         $productdata = [
-            "status"=>  $published,
+            'product' => [
+                "published"=>  $published,
+            ]
         ];
+
+        $shop = Auth::user();
+        $shop->api()->rest('admin/products/'.$product->shopify_id . '.json', $productdata);
 
     }
 
@@ -961,6 +966,7 @@ class ProductController extends Controller
                 ]
             ];
             $imagesResponse = $shop->api()->rest('PUT', '/admin/products/' . $related_product->shopify_id .'.json', $data);
+            $imagesResponse = json_decode(json_encode($imagesResponse, 1));
             if(!$imagesResponse->errors){
                 foreach ($positions as $index => $position){
                     $image = Image::where('product_id',$product)
