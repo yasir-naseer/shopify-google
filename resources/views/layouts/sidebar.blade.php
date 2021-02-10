@@ -36,6 +36,12 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link" href="{{route('settings')}}">
+                    <i class="nav-main-link-icon si si-layers"></i>
+                    <span class="nav-main-link-name">Settings</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -69,7 +75,7 @@
 
         <div class="d-flex align-items-center">
             <!-- User Dropdown -->
-          
+
             <div class="dropdown d-inline-block ml-2">
                 <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded" src="{{ asset('assets/media/avatars/avatar10.jpg') }}" alt="Header Avatar" style="width: 18px;">

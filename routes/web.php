@@ -33,6 +33,10 @@ Route::group(['middleware' => ['auth.shopify']], function () {
     Route::get('/push/{id}/to-store','ProductController@import_to_shopify')->name('import_to_shopify');
     Route::get('/sync/products', 'ProductController@storeProducts')->name('sync.products');
     Route::get('/variant/{id}/change/image/{image_id}', 'ProductController@change_image')->name('change_image');
+
+
+    Route::get('/settings','SettingController@index')->name('settings');
+    Route::get('/settings/update','SettingController@update')->name('settings.update');
 });
 
 

@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-       
+
     }
 
     public function index()
@@ -57,7 +57,7 @@ class ProductController extends Controller
         ]);
     }
 
-    
+
 
     public function Edit($id)
     {
@@ -171,7 +171,7 @@ class ProductController extends Controller
                     $product->barcode = $request->barcode;
                     $product->save();
 
-                
+
                     if (count($product->hasVariants) == 0) {
                         $response = $shop->api()->rest('GET', '/admin/products/' . $product->shopify_id .'.json');
                         if(!$response->errors){
@@ -201,7 +201,7 @@ class ProductController extends Controller
                     $product->weight = $request->weight;
                     $product->save();
 
-                  
+
                     if (count($product->hasVariants) == 0) {
                         $response = $shop->api()->rest('GET', '/admin/products/' . $product->shopify_id .'.json');
                         if(!$response->errors){
@@ -261,8 +261,8 @@ class ProductController extends Controller
                     }
                 }
 
-            
-               
+
+
 
                 else if ($type == 'organization') {
                     $product->type = $request->product_type;
@@ -467,7 +467,7 @@ class ProductController extends Controller
             $product->variants = $request->variants;
         }
         $product->save();
-        
+
         if ($request->variants) {
             $this->ProductVariants($request, $product->id);
         }
@@ -632,8 +632,8 @@ class ProductController extends Controller
             $shop = Auth::user();
             /*Categories and Subcategories*/
             $tags = $product->tags;
-            
-            
+
+
             if($product->status == 1){
                 $published = true;
             }
@@ -723,7 +723,7 @@ class ProductController extends Controller
                 // $v->inventory_item_id =$shopifyVariants[$index]->inventory_item_id;
                 $v->save();
             }
-            
+
             if(count($shopifyImages) == count($product->has_images)){
                 foreach ($product->has_images as $index => $image){
                     $image->shopify_id = $shopifyImages[$index]->id;
@@ -866,7 +866,7 @@ class ProductController extends Controller
         return $options_array;
     }
 
-   
+
     /**
      * @param Request $request
      * @param $product
@@ -914,9 +914,9 @@ class ProductController extends Controller
                 ]);
             }
         }
-    
+
     }
-    
+
     public function shopify_image_selection($image_id, $image, $shop, $variant)
     {
         $variant_ids = [];
@@ -944,7 +944,7 @@ class ProductController extends Controller
             ]);
         }
     }
-    
+
     public function update_image_position(Request $request){
         $positions = $request->input('positions');
         $product = $request->input('product');
@@ -958,7 +958,7 @@ class ProductController extends Controller
                 'position' => $index + 1,
             ]);
         }
-    
+
         $related_product = Product::find($product);
         if($related_product != null){
             $data = [
@@ -983,7 +983,7 @@ class ProductController extends Controller
                     'message' => 'error'
                 ]);
             }
-    
+
         }
         else{
             return response()->json([
@@ -1006,16 +1006,16 @@ class ProductController extends Controller
             foreach ($products->body->products as $product) {
                 $this->createProduct($product);
             }
-    
+
             if (isset($products->link->next)) {
                 $this->storeProducts($products->link->next);
             }
         }
-        
+
         return redirect()->back()->with('success', 'Products Synced Successfully');
     }
 
-    public function createProduct($product)
+    public function createProduct($product,$shop=null)
     {
         if (Product::where('shopify_id', $product->id)->exists()) {
             $p = Product::where('shopify_id', $product->id)->first();
@@ -1024,7 +1024,13 @@ class ProductController extends Controller
         }
 
         $p->title = $product->title;
-        $p->shop_id = Auth::user()->id;
+        if($shop===null)
+        {
+            $p->shop_id = Auth::user()->id;
+        }else
+        {
+            $p->shop_id = $shop->id;
+        }
         $p->shopify_id = $product->id;
         $p->description = $product->body_html;
         $p->price = $product->variants[0]->price;
@@ -1061,7 +1067,7 @@ class ProductController extends Controller
             }
         }
 
-        
+
         if ($product->variants) {
             foreach($product->variants as $i => $v) {
                 $variants = new  ProductVariant();
@@ -1090,7 +1096,7 @@ class ProductController extends Controller
                 }
             }
         }
-       
+
 
         $p->quantity = $p->hasVariants->sum('quantity');
         $p->save();
