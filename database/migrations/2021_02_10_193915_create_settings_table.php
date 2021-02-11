@@ -15,10 +15,10 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('merchantId');
+            $table->string('merchantId')->nullable();
             $table->string('shop');
-            $table->text('storeName');
-            $table->text('merchantJson');
+            $table->text('storeName')->nullable();
+            $table->text('merchantJson')->nullable();
             $table->timestamps();
         });
     }

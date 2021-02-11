@@ -20,7 +20,7 @@ class SettingController extends Controller
             $setting->save();
         }
 
-        return view('settings',compact('setting'));
+        return view('products.settings',compact('setting'));
     }
 
     public function update($id,Request $request)
@@ -42,5 +42,6 @@ class SettingController extends Controller
 
         }
         $setting->save();
+        return back()->with('success','Settings Updated Successfully');
     }
 }

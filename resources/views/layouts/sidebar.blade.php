@@ -16,25 +16,10 @@
     <div class="content-side content-side-full">
         <ul class="nav-main">
             <li class="nav-main-item">
-                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                <a class="nav-main-link "  href="{{ route('home')}}">
                     <i class="nav-main-link-icon si si-layers"></i>
                     <span class="nav-main-link-name">Products</span>
                 </a>
-                <ul class="nav-main-submenu">
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('home')}}">
-                            <i class="nav-main-link-icon si si-bag"></i>
-                            <span class="nav-main-link-name">All Products</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('product.create') }}">
-                            <i class="nav-main-link-icon si si-bag"></i>
-                            <span class="nav-main-link-name">Add New Product</span>
-                        </a>
-                    </li>
-                </ul>
             </li>
             <li class="nav-main-item">
                 <a class="nav-main-link" href="{{route('settings')}}">
@@ -73,39 +58,6 @@
 
 
 
-        <div class="d-flex align-items-center">
-            <!-- User Dropdown -->
-
-            <div class="dropdown d-inline-block ml-2">
-                <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded" src="{{ asset('assets/media/avatars/avatar10.jpg') }}" alt="Header Avatar" style="width: 18px;">
-                    <span class="d-none d-sm-inline-block ml-1">Admin</span>
-                    <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
-                    <div class="p-3 text-center bg-primary">
-                       <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('assets/media/avatars/avatar10.jpg') }}" alt="">
-                    </div>
-                    <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
-                            <span>Profile</span>
-                            <span>
-                                            <span class="badge badge-pill badge-success">1</span>
-                                            <i class="si si-user ml-1"></i>
-                                        </span>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            <span>Settings</span>
-                            <i class="si si-settings"></i>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="/logout">
-                            <span>Log Out</span>
-                            <i class="si si-logout ml-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- END Right Section -->
     </div>
     <!-- END Header Content -->

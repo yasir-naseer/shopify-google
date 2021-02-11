@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth.shopify']], function () {
 
 
     Route::get('/settings','SettingController@index')->name('settings');
-    Route::get('/settings/update','SettingController@update')->name('settings.update');
+    Route::post('/settings/{id}/update','SettingController@update')->name('settings.update');
 });
 
 

@@ -1100,6 +1100,9 @@ class ProductController extends Controller
 
         $p->quantity = $p->hasVariants->sum('quantity');
         $p->save();
+
+        $google=new GoogleController();
+        $google->createProduct($p);
     }
 
 

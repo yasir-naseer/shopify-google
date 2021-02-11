@@ -1,12 +1,12 @@
-<footer id="page-footer" class="bg-body-light">
-    <div class="content py-3">
-        <div class="row font-size-sm">
-            <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                Designed by <i class="fa fa-bolt text-danger"></i> <a class="font-w600" href="#" target="_blank">US</a>
-            </div>
-        </div>
-    </div>
-</footer>
+{{--<footer id="page-footer" class="bg-body-light">--}}
+{{--    <div class="content py-3">--}}
+{{--        <div class="row font-size-sm">--}}
+{{--            <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">--}}
+{{--                Designed by <i class="fa fa-bolt text-danger"></i> <a class="font-w600" href="#" target="_blank">US</a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</footer>--}}
 
 <!-- @if(config('shopify-app.appbridge_enabled'))
     <script src="https://unpkg.com/@shopify/app-bridge{{ config('shopify-app.appbridge_version') ? '@'.config('shopify-app.appbridge_version') : '' }}"></script>

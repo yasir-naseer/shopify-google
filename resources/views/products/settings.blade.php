@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <form id="create_product_form" action="{{ route('settings.update') }}" class="form-horizontal {{--push-30-t--}} push-30" method="post" enctype="multipart/form-data">
+    <form id="create_product_form"  action="{{ route('settings.update',$setting->id) }}" class="form-horizontal {{--push-30-t--}} push-30" method="post" enctype="multipart/form-data">
         @csrf
         <div class="content">
             <div class="row">
@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label>Google Merchant Credentials(Json File)</label>
                         <input type="file" accept="application/json" class="form-control" name="merchantJson">
-                        @if(is_file(storage_path($setting->merchantJson)))
+                        @if(\Illuminate\Support\Facades\Storage::exists($setting->merchantJson))
                             <p>Status: Active<img width="30px" style="display: inline-block" src="{{asset('assets/active.svg')}}"/></p>
                         @endif
                     </div>
