@@ -28,7 +28,7 @@
             </form>
         </div>
         <div class="col-md-4 text-right">
-            <a href="{{ route('product.create') }}" class="btn btn-success btn-square ">Add New Product</a>
+{{--            <a href="{{ route('product.create') }}" class="btn btn-success btn-square ">Add New Product</a>--}}
             <a href="{{ route('sync.products') }}" class="btn btn-success btn-square ">Sync</a>
         </div>
     </div>
@@ -114,7 +114,7 @@
                             <a href="{{ route('product.delete', $product->id) }}" class="btn btn-sm btn-danger"
                                 type="button" data-toggle="tooltip" title=""
                                 data-original-title="Delete Product"><i class="fa fa-times"></i></a>
-                            
+
             </div>
                     </td>
                 </tr>
