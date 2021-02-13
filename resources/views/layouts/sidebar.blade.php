@@ -23,7 +23,7 @@
             </li>
             <li class="nav-main-item">
                 <a class="nav-main-link" href="{{route('settings')}}">
-                    <i class="nav-main-link-icon si si-layers"></i>
+                    <i class="nav-main-link-icon si si-settings"></i>
                     <span class="nav-main-link-name">Settings</span>
                 </a>
             </li>
