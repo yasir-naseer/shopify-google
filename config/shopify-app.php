@@ -305,15 +305,15 @@ return [
     'webhooks' => [
         [
             'topic' => 'products/create',
-            'address' => 'https://your-domain.com/webhook/product-create'
+            'address' => 'https://phpstack-529708-1720576.cloudwaysapps.com/webhook/product-create'
         ],
         [
             'topic' => 'products/update',
-            'address' => 'https://your-domain.com/webhook/product-update'
+            'address' => 'https://phpstack-529708-1720576.cloudwaysapps.com/webhook/product-update'
         ],
         [
             'topic' => 'app/uninstalled',
-            'address' => 'https://your-domain.com/webhook/app-uninstall'
+            'address' => 'https://phpstack-529708-1720576.cloudwaysapps.com/webhook/app-uninstall'
         ]
 
     ],
