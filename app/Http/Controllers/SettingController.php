@@ -41,6 +41,22 @@ class SettingController extends Controller
             $setting->merchantJson=$request->file('merchantJson')->store('credentials');
 
         }
+
+        if ($request->input('shopifyUpdate'))
+        {
+            $setting->shopifyUpdate=true;
+        }else
+        {
+            $setting->shopifyUpdate=false;
+        }
+
+        if ($request->input('googleUpdate'))
+        {
+            $setting->googleUpdate=true;
+        }else
+        {
+            $setting->googleUpdate=false;
+        }
         $setting->save();
         return back()->with('success','Settings Updated Successfully');
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Image;
 use App\Product;
 use App\ProductVariant;
+use App\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -1106,5 +1107,21 @@ class ProductController extends Controller
     }
 
 
+    public function updateProductAll($id,Request $request)
+    {
+        $product=Product::find($id);
+        $shop=Auth::user();
+        $setting = Setting::where('shop', $shop->name)->first();
+        if ($setting->googleUpdate==true)
+        {
+            $google=new GoogleController();
+            $google->updateProduct($product,$request);
+        }
+        if ($setting->shopifyUpdate==true)
+        {
+
+        }
+        return redirect()->back();
+    }
 
 }

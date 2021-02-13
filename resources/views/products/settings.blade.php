@@ -20,25 +20,37 @@
         </div>
     </div>
 
-    <form id="create_product_form"  action="{{ route('settings.update',$setting->id) }}" class="form-horizontal {{--push-30-t--}} push-30" method="post" enctype="multipart/form-data">
+    <form id="create_product_form" action="{{ route('settings.update',$setting->id) }}"
+          class="form-horizontal {{--push-30-t--}} push-30" method="post" enctype="multipart/form-data">
         @csrf
         <div class="content">
             <div class="row">
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
                         <label>Shop Name</label>
-                        <input type="text"class="form-control" name="storeName" value="{{$setting->storeName}}">
+                        <input type="text" class="form-control" name="storeName" value="{{$setting->storeName}}">
                     </div>
                     <div class="form-group">
                         <label>Google Merchant ID</label>
-                        <input type="text"class="form-control" name="merchantId" value="{{$setting->merchantId}}">
+                        <input type="text" class="form-control" name="merchantId" value="{{$setting->merchantId}}">
                     </div>
                     <div class="form-group">
                         <label>Google Merchant Credentials(Json File)</label>
                         <input type="file" accept="application/json" class="form-control" name="merchantJson">
                         @if(\Illuminate\Support\Facades\Storage::exists($setting->merchantJson))
-                            <p>Status: Active<img width="30px" style="display: inline-block" src="{{asset('assets/active.svg')}}"/></p>
+                            <p>Status: Active<img width="30px" style="display: inline-block"
+                                                  src="{{asset('assets/active.svg')}}"/></p>
                         @endif
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" name="googleUpdate" value="1"
+                                      @if($setting->googleUpdate==true) checked @endif/> Update on Google Merchant
+                            Center</label>
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" name="shopifyUpdate" value="1"
+                                      @if($setting->shopifyUpdate==true) checked @endif/> Update on Shopify
+                            Store</label>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Save</button>
