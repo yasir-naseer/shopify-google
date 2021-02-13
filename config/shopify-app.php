@@ -306,7 +306,16 @@ return [
         [
             'topic' => 'products/create',
             'address' => 'https://your-domain.com/webhook/product-create'
+        ],
+        [
+            'topic' => 'products/update',
+            'address' => 'https://your-domain.com/webhook/product-update'
+        ],
+        [
+            'topic' => 'app/uninstalled',
+            'address' => 'https://your-domain.com/webhook/app-uninstall'
         ]
+
     ],
 
     /*
