@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -31,9 +32,12 @@ class AfterAuthenticateJob implements ShouldQueue
     public function handle()
     {
         $shop=Auth::user();
-
-        $shop=$shop->api()->rest('GET','/admin/shop.json');
-        dd($shop);
+        $user=User::find($shop->id);
+        $shop = $shop->api()->rest('GET', '/admin/shop.json');
+        if (isset($shop['body']['shop']['domain'])) {
+            $user->domain=$shop['body']['shop']['domain'];
+            $user->save();
+        }
 
     }
 }

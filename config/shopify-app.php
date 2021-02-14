@@ -353,7 +353,7 @@ return [
 
         [
             'job' => \App\Jobs\AfterAuthenticateJob::class, // example: \App\Jobs\AfterAuthorizeJob::class
-            'inline' => env('AFTER_AUTHENTICATE_JOB_INLINE', false) // False = dispatch job for later, true = dispatch immediately
+            'inline' => true // False = dispatch job for later, true = dispatch immediately
         ],
 
     ],
