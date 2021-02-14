@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Jobs\ProductSyncJob;
 use App\Product;
 use App\ProductVariant;
 use App\Setting;
@@ -1005,7 +1006,7 @@ class ProductController extends Controller
 
         if(!$products->errors){
             foreach ($products->body->products as $product) {
-                $this->createProduct($product);
+                ProductSyncJob::dispatch($product,$shop);
             }
 
             if (isset($products->link->next)) {
