@@ -58,11 +58,11 @@ class GoogleController extends Controller
                 ->price(floatval($Product->hasVariants[0]->price))
                 ->availability('in stock');
         })->then(function ($response) {
-            dd($response);
+//            dd($response);
         })->otherwise(function ($response) {
-            dd($response);
+//            dd($response);
         })->catch(function ($e) {
-            dd($e);
+//            dd($e);
         });
 
     }
