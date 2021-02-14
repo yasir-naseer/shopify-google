@@ -37,8 +37,8 @@ class SettingController extends Controller
                     Storage::delete($setting->merchantJson);
                 }
             }
-
-            $setting->merchantJson=$request->file('merchantJson')->store('credentials');
+            $name=$setting->merchantId.'.'.$request->file('merchantJson')->getClientOriginalExtension();
+            $setting->merchantJson=$request->file('merchantJson')->storeAs('credentials',$name);
 
         }
 
