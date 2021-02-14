@@ -46,11 +46,11 @@ class GoogleController extends Controller
             'app_name' => $setting->storeName,
             'merchant_id' => $setting->merchantId,
             'client_credentials_path' => storage_path('app/' . $setting->merchantJson)
-        ])->insert(function ($product) use ($Product,$description) {
+        ])->insert(function ($product) use ($Product,$description,$shop) {
             $product->offerId($Product->shopify_id)
                 ->title($Product->title)
-                ->link('https://googlemerchant.myshopify.com/products/test-product')
-                ->imageLink('https://cdn.shopify.com/s/files/1/0526/9104/2478/products/product-03_1024x1024@2x.jpg')
+                ->link($shop->domain.'/products/'.$Product->handle)
+                ->imageLink($product->image)
                 ->channel('online')
                 ->targetCountry('US')
                 ->contentLanguage('en')

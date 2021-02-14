@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 
 class AfterAuthenticateJob implements ShouldQueue
 {
@@ -29,6 +30,10 @@ class AfterAuthenticateJob implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $shop=Auth::user();
+
+        $shop=$shop->api()->rest('GET','/admin/shop.json');
+        dd($shop);
+
     }
 }

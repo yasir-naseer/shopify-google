@@ -1033,6 +1033,14 @@ class ProductController extends Controller
             $p->shop_id = $shop->id;
         }
         $p->shopify_id = $product->id;
+        if($product->handle)
+        {
+            $p->handle=$product->handle;
+        }
+        if(isset($product->image->src))
+        {
+            $p->image=$product->image->src;
+        }
         $p->description = $product->body_html;
         $p->price = $product->variants[0]->price;
         $p->compare_price = $product->variants[0]->compare_at_price;
