@@ -50,7 +50,7 @@ class GoogleController extends Controller
             $product->offerId($Product->shopify_id)
                 ->title($Product->title)
                 ->link($shop->domain.'/products/'.$Product->handle)
-                ->imageLink($product->image)
+                ->imageLink($Product->image)
                 ->channel('online')
                 ->targetCountry('US')
                 ->contentLanguage('en')
