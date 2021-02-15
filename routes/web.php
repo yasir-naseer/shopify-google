@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth.shopify']], function () {
+Route::group(['middleware' => ['auth.shopify', 'billable']], function () {
     Route::get('/products','ProductController@index')->name('product.create');
     Route::get('/','ProductController@all')->name('home');
     Route::any('/products/{id}/view','ProductController@view')->name('product.view');
