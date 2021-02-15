@@ -18,7 +18,7 @@ Route::group(['middleware' => ['auth.shopify']], function () {
     Route::get('/','ProductController@all')->name('home');
     Route::any('/products/{id}/view','ProductController@view')->name('product.view');
     Route::any('/products/{id}/edit','ProductController@edit')->name('product.edit');
-    Route::any('/products/{id}/update','ProductController@update')->name('product.update');
+    Route::any('/products/{id}/update','ProductController@UpdateGlobal')->name('product.update');
     Route::any('/products/{id}/add/new/variants','ProductController@updateExistingProductNewVariants')->name('product.update.add.new.variants');
     Route::any('/products/{id}/update/old/variants','ProductController@updateExistingProductOldVariants')->name('product.update.old.variants');
     Route::any('/products/{id}/change/status','ProductController@updateProductStatus')->name('product.change.status');

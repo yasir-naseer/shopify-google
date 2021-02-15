@@ -77,6 +77,13 @@ class ProductController extends Controller
 
     public function productAddImages(Request $request, $id) {
 
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
+
         $product = Product::find($id);
         $woocommerce =$this->helper->getWooCommerceAdminShop();
         if($product != null) {
@@ -135,12 +142,37 @@ class ProductController extends Controller
     }
 
     public function updateProductStatus(Request $request, $id) {
+
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $product = Product::find($id);
         $shop =$this->helper->getShop();
 
         $this->product_status_change($request, $product);
         $this->log->store(0, 'Product', $product->id, $product->title,'Product Status Updated');
 
+    }
+
+
+    public function UpdateGlobal(Request $request,$id)
+    {
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==true)
+        {
+            $this->update($request,$id);
+        }
+        if ($setting->googleUpdate==true)
+        {
+            $google=new GoogleController();
+            $product = Product::find($id);
+            $google->updateProduct($product,$request);
+        }
+        return back()->with('success','Product Updated');
     }
 
     public function update(Request $request, $id)
@@ -288,6 +320,14 @@ class ProductController extends Controller
     }
 
     public function updateExistingProductNewVariants(Request $request, $id) {
+
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
+
         $product = Product::find($id);
         $shop = Auth::user();
         if($product != null) {
@@ -323,6 +363,12 @@ class ProductController extends Controller
     }
 
     public function updateExistingProductOldVariants(Request $request, $id) {
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $product = Product::find($id);
         $shop = Auth::user();
         if($product != null) {
@@ -426,6 +472,13 @@ class ProductController extends Controller
 
 
     public function deleteExistingProductImage(Request $request, $id) {
+
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $product = Product::find($id);
         $shop =$this->helper->getShop();
 
@@ -444,7 +497,6 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
-
 
         if (Product::where('title', $request->title)->exists()) {
             $product = Product::where('title', $request->title)->first();
@@ -495,6 +547,13 @@ class ProductController extends Controller
 
     public function ProductVariants($data, $id)
     {
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
+
         for ($i = 0; $i < count($data->variant_title); $i++) {
             $options = explode('/', $data->variant_title[$i]);
             $variants = new  ProductVariant();
@@ -520,6 +579,12 @@ class ProductController extends Controller
 
     public function ProductVariantsUpdate($data, $id, $product)
     {
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $woocommerce = $this->helper->getAdminShop();
 
         $product = Product::find($id);
@@ -566,24 +631,38 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        $product = Product::find($id);
-        $shop = Auth::user();
-        $shop->api()->rest('DELETE', '/admin//products/'.$product->shopify_id.'.json');
-        $variants = ProductVariant::where('product_id', $id)->get();
-        foreach ($variants as $variant) {
-            $variant->delete();
-        }
-        foreach ($product->has_images as $image){
-            $image->delete();
-        }
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==true)
+        {
+            $product = Product::find($id);
+            $shop = Auth::user();
+            $shop->api()->rest('DELETE', '/admin/products/'.$product->shopify_id.'.json');
+            $variants = ProductVariant::where('product_id', $id)->get();
+            foreach ($variants as $variant) {
+                $variant->delete();
+            }
+            foreach ($product->has_images as $image){
+                $image->delete();
+            }
 
-        $product->delete();
-
-        return redirect()->back()->with('error', 'Product Deleted with Variants Successfully');
+            $product->delete();
+        }
+        if ($setting->googleUpdate==true)
+        {
+            $google=new GoogleController();
+            $google->deleteProduct($product);
+        }
     }
 
     public function add_existing_product_new_variants(Request $request)
     {
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $product = Product::find($request->id);
         if ($product->varaints == 0) {
             return view('products.add_existing_product_new_variants')->with([
@@ -596,6 +675,12 @@ class ProductController extends Controller
 
     public function update_existing_product_new_variants(Request $request)
     {
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $product = Product::find($request->id);
         if ($product->varaints !== 0) {
             return view('products.update_existing_product_new_variants')->with([
@@ -750,6 +835,12 @@ class ProductController extends Controller
 
     public function delete_three_options_variants(Request $request, $product)
     {
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $deleted_variants = $product->hasVariants()->whereIn('option1', $request->input('delete_option1'))
             ->whereIn('option2', $request->input('delete_option2'))
             ->whereIn('option3', $request->input('delete_option3'))->get();
@@ -759,6 +850,12 @@ class ProductController extends Controller
 
     public function delete_two_options_variants(Request $request, $product)
     {
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $deleted_variants = $product->hasVariants()->whereIn('option1', $request->input('delete_option1'))
             ->whereIn('option2', $request->input('delete_option2'))->get();
         $this->delete_variants($deleted_variants);
@@ -766,12 +863,24 @@ class ProductController extends Controller
     }
 
     public function delete_variants($variants){
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         foreach ($variants as $variant){
             $variant->delete();
         }
     }
 
     public function variants_template_array($product){
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $variants_array = [];
         foreach ($product->hasVariants as $index => $varaint) {
             array_push($variants_array, [
@@ -793,6 +902,7 @@ class ProductController extends Controller
     }
 
     public function options_template_array($product){
+
         $options_array = [];
         if (count($product->option1($product)) > 0) {
             $temp = [];
@@ -831,6 +941,7 @@ class ProductController extends Controller
     }
 
     public function options_update_template_array($product){
+
         $options_array = [];
         if (count($product->option1($product)) > 0) {
             $temp = [];
@@ -876,6 +987,12 @@ class ProductController extends Controller
      */
     public function product_status_change(Request $request, $product)
     {
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $product->status = $request->input('status');
         $product->save();
         if($product->status == 1)
@@ -896,6 +1013,13 @@ class ProductController extends Controller
     }
 
     public function change_image($id,$image_id,Request $request){
+
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         if($request->input('type') == 'product'){
             $shop = Auth::user();
             $variant = ProductVariant::find($id);
@@ -948,6 +1072,13 @@ class ProductController extends Controller
     }
 
     public function update_image_position(Request $request){
+
+        $shop=Auth::user();
+        $setting=Setting::where('shop',$shop)->first();
+        if ($setting->shopifyUpdate==false)
+        {
+            return back()->with('error','Enable Settings for Shopify');
+        }
         $positions = $request->input('positions');
         $product = $request->input('product');
         $images_array = [];
