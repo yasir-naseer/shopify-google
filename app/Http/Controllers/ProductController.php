@@ -78,7 +78,7 @@ class ProductController extends Controller
     public function productAddImages(Request $request, $id) {
 
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -144,7 +144,7 @@ class ProductController extends Controller
     public function updateProductStatus(Request $request, $id) {
 
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -161,7 +161,7 @@ class ProductController extends Controller
     public function UpdateGlobal(Request $request,$id)
     {
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==true)
         {
             $this->update($request,$id);
@@ -322,7 +322,7 @@ class ProductController extends Controller
     public function updateExistingProductNewVariants(Request $request, $id) {
 
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -364,7 +364,7 @@ class ProductController extends Controller
 
     public function updateExistingProductOldVariants(Request $request, $id) {
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -474,7 +474,7 @@ class ProductController extends Controller
     public function deleteExistingProductImage(Request $request, $id) {
 
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -548,7 +548,7 @@ class ProductController extends Controller
     public function ProductVariants($data, $id)
     {
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -580,7 +580,7 @@ class ProductController extends Controller
     public function ProductVariantsUpdate($data, $id, $product)
     {
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -632,7 +632,7 @@ class ProductController extends Controller
     public function delete($id)
     {
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==true)
         {
             $product = Product::find($id);
@@ -658,7 +658,7 @@ class ProductController extends Controller
     public function add_existing_product_new_variants(Request $request)
     {
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -676,7 +676,7 @@ class ProductController extends Controller
     public function update_existing_product_new_variants(Request $request)
     {
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -836,7 +836,7 @@ class ProductController extends Controller
     public function delete_three_options_variants(Request $request, $product)
     {
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -851,7 +851,7 @@ class ProductController extends Controller
     public function delete_two_options_variants(Request $request, $product)
     {
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -864,7 +864,7 @@ class ProductController extends Controller
 
     public function delete_variants($variants){
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -876,7 +876,7 @@ class ProductController extends Controller
 
     public function variants_template_array($product){
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -988,7 +988,7 @@ class ProductController extends Controller
     public function product_status_change(Request $request, $product)
     {
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -1015,7 +1015,7 @@ class ProductController extends Controller
     public function change_image($id,$image_id,Request $request){
 
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
@@ -1074,7 +1074,7 @@ class ProductController extends Controller
     public function update_image_position(Request $request){
 
         $shop=Auth::user();
-        $setting=Setting::where('shop',$shop)->first();
+        $setting=Setting::where('shop',$shop->name)->first();
         if ($setting->shopifyUpdate==false)
         {
             return back()->with('error','Enable Settings for Shopify');
