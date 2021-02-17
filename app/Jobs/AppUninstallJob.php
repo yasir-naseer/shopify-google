@@ -57,7 +57,7 @@ class AppUninstallJob implements ShouldQueue
             $productIds=Product::where('shop_id',$user->id)->pluck('shopify_id');
             Product::where('shop_id',$user->id)->delete();
             ProductVariant::whereIn('product_id',$productIds)->delete();
-            User::where('name',$shop->domain)->forceDelete();
+            $user->forceDelete();
         }catch (\Exception $exception)
         {
 

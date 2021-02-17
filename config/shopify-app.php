@@ -305,15 +305,15 @@ return [
     'webhooks' => [
         [
             'topic' => 'products/create',
-            'address' => 'https://phpstack-529708-1720576.cloudwaysapps.com/webhook/product-create'
+            'address' => 'https://shoppingfeedseo.com/webhook/product-create'
         ],
         [
             'topic' => 'products/update',
-            'address' => 'https://phpstack-529708-1720576.cloudwaysapps.com/webhook/product-update'
+            'address' => 'https://shoppingfeedseo.com/webhook/product-update'
         ],
         [
             'topic' => 'app/uninstalled',
-            'address' => 'https://phpstack-529708-1720576.cloudwaysapps.com/webhook/app-uninstall'
+            'address' => 'https://shoppingfeedseo.com/webhook/app-uninstall'
         ]
 
     ],
