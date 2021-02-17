@@ -31,7 +31,7 @@
 
     </script>
 
-    @include('shopify-app::partials.flash_messages')
+{{--    @include('shopify-app::partials.flash_messages')--}}
 @endif
 </body>
 </html>
