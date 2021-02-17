@@ -84,8 +84,8 @@ class GoogleController extends Controller
             'client_credentials_path' => storage_path('app/' . $setting->merchantJson)
         ])->insert(function ($product) use ($Product,$request,$description) {
             $product->offerId($Product->shopify_id)
-                ->title($request->title)
-                ->link($request->link)
+                ->title($Product->title)
+                ->link($Product->link)
                 ->imageLink($Product->image)
                 ->channel('online')
                 ->targetCountry('US')
