@@ -57,6 +57,13 @@ class SettingController extends Controller
         {
             $setting->googleUpdate=false;
         }
+        if ($request->input('googleWebhook'))
+        {
+            $setting->googleWebhook=true;
+        }else
+        {
+            $setting->googleWebhook=false;
+        }
         $setting->save();
         return back()->with('success','Settings Updated Successfully');
     }

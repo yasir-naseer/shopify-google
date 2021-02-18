@@ -43,18 +43,28 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label><input type="checkbox" name="googleUpdate" value="1"
-                                      @if($setting->googleUpdate==true) checked @endif/> Update on Google Merchant
-                            Center</label>
-                    </div>
-                    <div class="form-group">
                         <label><input type="checkbox" name="shopifyUpdate" value="1"
                                       @if($setting->shopifyUpdate==true) checked @endif/> Update on Shopify
                             Store</label>
                     </div>
                     <div class="form-group">
+                        <label><input type="checkbox" name="googleUpdate" value="1"
+                                      @if($setting->googleUpdate==true) checked @endif/> Update on Google Merchant
+                            Center</label>
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" name="googleWebhook" value="1"
+                                      @if($setting->googleWebhook==true) checked @endif/>Receive Webhook from Shopify for Google Merchant Center</label>
+                    </div>
+                    <div class="form-group">
                         <button class="btn btn-primary" type="submit">Save</button>
                     </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <h5>Follow These Steps to Create API Connection and Download JSON file to upload here</h5>
+                    <a href="{{asset('setting.png')}}" target="_blank" class="lightbox">
+                        <img src="{{asset('setting.png')}}" width="100%" />
+                    </a>
                 </div>
             </div>
         </div>

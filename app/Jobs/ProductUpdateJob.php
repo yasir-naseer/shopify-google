@@ -54,7 +54,7 @@ class ProductUpdateJob implements ShouldQueue
         $product=json_decode(json_encode($this->data),FALSE);
         $shop=User::where('name',$this->shopDomain)->first();
         $setting = Setting::where('shop', $shop->name)->first();
-        if ($setting->googleUpdate==true)
+        if ($setting->googleUpdate==true && $setting->googleWebhook==true)
         {
             $google=new GoogleController();
             $product=json_decode(json_encode($this->data),FALSE);

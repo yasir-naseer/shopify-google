@@ -41,15 +41,15 @@ class GoogleController extends Controller
 //        });
 
         $matches = array('"{\*?\\.+(;})|\s?\\[A-Za-z0-9]+|\s?{\s?\\[A-Za-z0-9]+\s?|\s?}\s?"');
-        $description = preg_replace($matches,'',$Product->body_html, -1, $count);
+        $description = preg_replace($matches, '', $Product->body_html, -1, $count);
         $pro = ProductApi::merchant([
             'app_name' => $setting->storeName,
             'merchant_id' => $setting->merchantId,
             'client_credentials_path' => storage_path('app/' . $setting->merchantJson)
-        ])->insert(function ($product) use ($Product,$description,$shop) {
+        ])->insert(function ($product) use ($Product, $description, $shop) {
             $product->offerId($Product->shopify_id)
                 ->title($Product->title)
-                ->link($shop->domain.'/products/'.$Product->handle)
+                ->link($shop->domain . '/products/' . $Product->handle)
                 ->imageLink($Product->image)
                 ->channel('online')
                 ->targetCountry('US')
@@ -57,8 +57,9 @@ class GoogleController extends Controller
                 ->description($description)
                 ->price(floatval($Product->hasVariants[0]->price))
                 ->availability('in stock');
-        })->then(function ($response) {
-//            dd($response);
+        })->then(function ($response) use ($Product) {
+            $Product->googleProduct = json_encode($response);
+            $Product->save();
         })->otherwise(function ($response) {
 //            dd($response);
         })->catch(function ($e) {
@@ -67,7 +68,7 @@ class GoogleController extends Controller
 
     }
 
-    public function updateProduct($Product,$request)
+    public function updateProduct($Product, $request)
     {
         $shop = Auth::user();
         $setting = Setting::where('shop', $shop->name)->first();
@@ -75,14 +76,43 @@ class GoogleController extends Controller
 
         //Delete the Previous One
         $matches = array('"{\*?\\.+(;})|\s?\\[A-Za-z0-9]+|\s?{\s?\\[A-Za-z0-9]+\s?|\s?}\s?"');
-        $description = preg_replace($matches,'',$request->body_html, -1, $count);
+        $description = preg_replace($matches, '', $request->body_html, -1, $count);
 
         //Create Product Again
         $pro = ProductApi::merchant([
             'app_name' => $setting->storeName,
             'merchant_id' => $setting->merchantId,
             'client_credentials_path' => storage_path('app/' . $setting->merchantJson)
-        ])->insert(function ($product) use ($Product,$request,$description) {
+        ])->insert(function ($product) use ($Product, $request, $description) {
+            $product->offerId($Product->shopify_id)
+                ->title($Product->title)
+                ->link($Product->link)
+                ->imageLink($Product->image)
+                ->channel('online')
+                ->targetCountry('US')
+                ->contentLanguage('en')
+                ->description($description)
+                ->price(floatval($Product->hasVariants[0]->price))
+                ->availability('in stock');
+        })->then(function ($response) use ($Product) {
+            $Product->googleProduct = json_encode($response);
+            $Product->save();
+        })->otherwise(function ($response) {
+        })->catch(function ($e) {
+        });
+    }
+
+    public function deleteProduct($Product)
+    {
+        $shop = Auth::user();
+        $setting = Setting::where('shop', $shop->name)->first();
+        $matches = array('"{\*?\\.+(;})|\s?\\[A-Za-z0-9]+|\s?{\s?\\[A-Za-z0-9]+\s?|\s?}\s?"');
+        $description = preg_replace($matches, '', $Product->body_html, -1, $count);
+        $pro = ProductApi::merchant([
+            'app_name' => $setting->storeName,
+            'merchant_id' => $setting->merchantId,
+            'client_credentials_path' => storage_path('app/' . $setting->merchantJson)
+        ])->delete(function ($product) use ($Product, $description) {
             $product->offerId($Product->shopify_id)
                 ->title($Product->title)
                 ->link($Product->link)
@@ -98,30 +128,14 @@ class GoogleController extends Controller
         })->catch(function ($e) {
         });
     }
-    public function deleteProduct($Product)
+
+    public function BulkUpdate(Request $request)
     {
-        $shop = Auth::user();
-        $setting = Setting::where('shop', $shop->name)->first();
-        $matches = array('"{\*?\\.+(;})|\s?\\[A-Za-z0-9]+|\s?{\s?\\[A-Za-z0-9]+\s?|\s?}\s?"');
-        $description = preg_replace($matches,'',$Product->body_html, -1, $count);
-        $pro = ProductApi::merchant([
-            'app_name' => $setting->storeName,
-            'merchant_id' => $setting->merchantId,
-            'client_credentials_path' => storage_path('app/' . $setting->merchantJson)
-        ])->delete(function ($product) use ($Product,$description) {
-            $product->offerId($Product->shopify_id)
-                ->title($Product->title)
-                ->link($Product->link)
-                ->imageLink($Product->image)
-                ->channel('online')
-                ->targetCountry('US')
-                ->contentLanguage('en')
-                ->description($description)
-                ->price(floatval($Product->hasVariants[0]->price))
-                ->availability('in stock');
-        })->then(function ($response) {
-        })->otherwise(function ($response) {
-        })->catch(function ($e) {
-        });
+        $productids=$request->input('products');
+
+        foreach ($productids as $ID)
+        {
+
+        }
     }
 }
