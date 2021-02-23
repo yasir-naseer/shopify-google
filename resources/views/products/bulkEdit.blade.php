@@ -49,7 +49,7 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td>
-                                        <img src="{{asset('images')}}/{{$product->image}}" width="50px" class="img img-thumbnail"/>
+                                        <img src="{{$product->image}}" width="50px" class="img img-thumbnail"/>
                                     </td>
                                     <td>
                                         <input name="title[{{$product->id}}]" value="{{$product->title}}" class="form-control" />
