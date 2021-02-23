@@ -35,7 +35,36 @@
         <div class="block">
             <div class="block-content">
                 <div class="row items-push">
-
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Title</th>
+                                <th>Product Type</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($products as $product)
+                                <tr>
+                                    <td>
+                                        <img src="{{asset('images')}}/{{$product->image}}" width="50px" class="img img-thumbnail"/>
+                                    </td>
+                                    <td>
+                                        <input name="title[{{$product->id}}]" value="{{$product->title}}" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input name="type[{{$product->id}}]" value="{{$product->type}}" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <textarea name="description[{{$product->id}}]" class="form-control" >{{$product->description}}</textarea>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

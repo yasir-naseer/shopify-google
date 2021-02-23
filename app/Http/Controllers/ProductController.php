@@ -1251,7 +1251,7 @@ class ProductController extends Controller
         $ids=$request->input('products');
         $ids=explode(',',$ids);
         $products=Product::whereIn('id',$ids)->cursor();
-        return view('products.bulkEdit',compact($products));
+        return view('products.bulkEdit',compact('products'));
     }
 
     public function updateProductAll($id,Request $request)
