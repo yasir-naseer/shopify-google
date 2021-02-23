@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth.shopify', 'billable']], function () {
 
     Route::get('/settings','SettingController@index')->name('settings');
     Route::post('/settings/{id}/update','SettingController@update')->name('settings.update');
+
+    Route::get('/bulkedit','ProductController@bulkEdit')->name('bulkEdit');
 });
 
 

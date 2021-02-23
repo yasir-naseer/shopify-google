@@ -15,6 +15,8 @@ class AddSomeMoreFieldsToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->text('googleProduct')->nullable();
+            $table->string('productType')->nullable();
+            $table->string('mpn')->nullable();
         });
     }
 
@@ -26,7 +28,9 @@ class AddSomeMoreFieldsToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->dropColumn('googleProduct');
+            $table->dropColumn('productType');
+            $table->dropColumn('mpn');
         });
     }
 }

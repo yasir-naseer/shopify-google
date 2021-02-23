@@ -64,6 +64,13 @@ class SettingController extends Controller
         {
             $setting->googleWebhook=false;
         }
+        if ($request->input('mtnSku'))
+        {
+            $setting->mtnSku=true;
+        }else
+        {
+            $setting->mtnSku=false;
+        }
         $setting->save();
         return back()->with('success','Settings Updated Successfully');
     }

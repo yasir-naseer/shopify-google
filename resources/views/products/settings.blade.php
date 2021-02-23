@@ -57,6 +57,10 @@
                                       @if($setting->googleWebhook==true) checked @endif/>Receive Webhook from Shopify for Google Merchant Center</label>
                     </div>
                     <div class="form-group">
+                        <label><input type="checkbox" name="mtnSku" value="1"
+                                      @if($setting->mtnSku==true) checked @endif/>Assign Sku as Mtn Number for Google Merchant Center.</label>
+                    </div>
+                    <div class="form-group">
                         <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                 </div>

@@ -18,6 +18,14 @@ class GoogleController extends Controller
         $shop = Auth::user();
 //        $Product=Product::find($id);
         $setting = Setting::where('shop', $shop->name)->first();
+        if ($setting->mtnSku==true)
+        {
+            if(isset($Product->hasVariants[0]->sku))
+            {
+                $Product->mtn=$Product->hasVariants[0]->sku;
+                $Product->save();
+            }
+        }
         $sizes = $Product->hasVariants->pluck('option1')->toArray();
         $sizes = collect($sizes)->unique()->toArray();
 
@@ -54,7 +62,9 @@ class GoogleController extends Controller
                 ->channel('online')
                 ->targetCountry('US')
                 ->contentLanguage('en')
+                ->mpn($Product->mpn)
                 ->description($description)
+                ->googleProductCategory($Product->type)
                 ->price(floatval($Product->hasVariants[0]->price))
                 ->availability('in stock');
         })->then(function ($response) use ($Product) {
@@ -68,10 +78,11 @@ class GoogleController extends Controller
 
     }
 
-    public function updateProduct($Product, $request)
+    public function updateProduct($Product, $request,$type=null)
     {
         $shop = Auth::user();
         $setting = Setting::where('shop', $shop->name)->first();
+
         $sizes = $Product->hasVariants->pluck('option1')->toArray();
 
         //Delete the Previous One
@@ -83,7 +94,7 @@ class GoogleController extends Controller
             'app_name' => $setting->storeName,
             'merchant_id' => $setting->merchantId,
             'client_credentials_path' => storage_path('app/' . $setting->merchantJson)
-        ])->insert(function ($product) use ($Product, $request, $description) {
+        ])->insert(function ($product) use ($Product, $request, $description,$type) {
             $product->offerId($Product->shopify_id)
                 ->title($Product->title)
                 ->link($Product->link)
@@ -91,7 +102,9 @@ class GoogleController extends Controller
                 ->channel('online')
                 ->targetCountry('US')
                 ->contentLanguage('en')
+                ->mpn($Product->mpn)
                 ->description($description)
+                ->googleProductCategory(($type!==null)?$type:$Product->type)
                 ->price(floatval($Product->hasVariants[0]->price))
                 ->availability('in stock');
         })->then(function ($response) use ($Product) {
@@ -120,7 +133,9 @@ class GoogleController extends Controller
                 ->channel('online')
                 ->targetCountry('US')
                 ->contentLanguage('en')
+                ->mpn($Product->mpn)
                 ->description($description)
+                ->googleProductCategory($Product->type)
                 ->price(floatval($Product->hasVariants[0]->price))
                 ->availability('in stock');
         })->then(function ($response) {
@@ -132,10 +147,20 @@ class GoogleController extends Controller
     public function BulkUpdate(Request $request)
     {
         $productids=$request->input('products');
+        $titles=$request->input('titles');
+        $description=$request->input('description');
+        $type=$request->input('type');
+        $mtn=$request->input('mtn');
 
-        foreach ($productids as $ID)
+        foreach (array_keys($productids) as $ID)
         {
-
+            $product=Product::find($ID);
+            $product->title=$titles[$ID];
+            $product->description=$description[$ID];
+            $product->type=$type[$ID];
+            $product->mtn=$mtn[$ID];
+            $product->save();
+            $this->updateProduct($product,$request,$product->type);
         }
     }
 }

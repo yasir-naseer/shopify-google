@@ -1246,6 +1246,13 @@ class ProductController extends Controller
         $google->createProduct($p);
     }
 
+    public function bulkEdit(Request $request)
+    {
+        $ids=$request->input('products');
+        $ids=explode(',',$ids);
+        $products=Product::whereIn('id',$ids)->cursor();
+        return view('products.bulkEdit',compact($products));
+    }
 
     public function updateProductAll($id,Request $request)
     {

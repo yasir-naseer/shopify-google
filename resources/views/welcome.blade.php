@@ -1,6 +1,11 @@
 @extends('layouts.index')
 @section('content')
-
+<style>
+    .display_none
+    {
+        display: none;
+    }
+</style>
 <div class="bg-body-light">
     <div class="content content-full pt-2 pb-2">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
@@ -30,6 +35,10 @@
         <div class="col-md-4 text-right">
 {{--            <a href="{{ route('product.create') }}" class="btn btn-success btn-square ">Add New Product</a>--}}
             <a href="{{ route('sync.products') }}" class="btn btn-success btn-square ">Sync</a>
+            <button class="btn btn-success btn-square bulk-edit">Bulk Edit</button>
+        </div>
+        <div class="col-md-12 bulk-invalid display_none text-danger my-2">
+            Please Select Products for Bulk Edit
         </div>
     </div>
 
@@ -41,6 +50,7 @@
             <table class="table table-borderless table-striped table-vcenter">
             <thead>
             <tr>
+                <th><input type="checkbox" class="form-control" style="width:16px" id="selectAll"/></th>
                 <th style="width:5% "></th>
                 <th>Title</th>
                 <th>Price</th>
@@ -52,6 +62,7 @@
             <tbody>
             @foreach($products as $product)
                 <tr>
+                    <td><input type="checkbox" class="form-control" style="width:16px" name="products[]" value="{{$product->id}}"/></td>
                     <td class="text-center">
                         <a href="{{ route('product.view', $product->id) }}">
                             @if(count($product->has_images) > 0)
@@ -136,17 +147,38 @@
 @endsection
 
 
-<!-- @section('scripts')
-@parent
+@section('scripts')
 <script type="text/javascript">
-var AppBridge = window['app-bridge'];
-var actions = AppBridge.actions;
-var TitleBar = actions.TitleBar;
-var Button = actions.Button;
-var Redirect = actions.Redirect;
-var titleBarOptions = {
-    title: 'Welcome',
-};
-var myTitleBar = TitleBar.create(app, titleBarOptions);
+    $(document).ready(function(){
+        $('.bulk-edit').on('click',function(){
+            $('.bulk-invalid').addClass('display_none');
+            var count=0;
+            var items=[];
+            $('input[name="products[]"]:checked').each(function(index,item){
+                ++count;
+                items.push($(item).val());
+            });
+            if(count===0)
+            {
+                $('.bulk-invalid').removeClass('display_none');
+            }else
+            {
+                const params = new URLSearchParams({
+                    products: items,
+                });
+                document.location.href="{{route('bulkEdit')}}?"+params.toString();
+            }
+        })
+
+        $('#selectAll').on('change',function(){
+            if($(this).prop('checked')==true)
+            {
+                $('input[type=checkbox]').attr('checked','checked');
+            }else
+            {
+                $('input[type=checkbox]').removeAttr('checked');
+            }
+        })
+    });
 </script>
-@endsection -->
+@endsection

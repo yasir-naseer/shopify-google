@@ -15,6 +15,7 @@ class AddSomeMoreFieldsToSettingsTable extends Migration
     {
         Schema::table('settings', function (Blueprint $table) {
             $table->boolean('googleWebhook')->default(true);
+            $table->boolean('mtnSku')->default(true);
         });
     }
 
@@ -26,7 +27,8 @@ class AddSomeMoreFieldsToSettingsTable extends Migration
     public function down()
     {
         Schema::table('settings', function (Blueprint $table) {
-            //
+            $table->dropColumn('googleWebhook');
+            $table->boolean('mtnSku')->default(true);
         });
     }
 }
