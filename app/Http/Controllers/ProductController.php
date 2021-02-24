@@ -1254,6 +1254,26 @@ class ProductController extends Controller
         return view('products.bulkEdit',compact('products'));
     }
 
+    public function bulkUpdate(Request $request)
+    {
+        $google=new GoogleController();
+        $titles=$request->input('title');
+        $types=$request->input('type');
+        $description=$request->input('description');
+        $productids=array_keys($request->input('title'));
+        foreach ($productids as $productid)
+        {
+            $product=Product::find($productid);
+            $product->type=$types[$productid];
+            $product->title=$titles[$productid];
+            $product->description=$description[$productid];
+            if($product->save())
+            {
+                $google->updateProduct($product,$request);
+            }
+        }
+    }
+
     public function updateProductAll($id,Request $request)
     {
         $product=Product::find($id);

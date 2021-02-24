@@ -78,7 +78,7 @@ class GoogleController extends Controller
 
     }
 
-    public function updateProduct($Product, $request,$type=null)
+    public function updateProduct($Product, $request=null,$type=null)
     {
         $shop = Auth::user();
         $setting = Setting::where('shop', $shop->name)->first();

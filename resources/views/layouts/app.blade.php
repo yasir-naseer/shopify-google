@@ -46,11 +46,24 @@
         <script>
             var AppBridge = window['app-bridge'];
             var createApp = AppBridge.default;
+            var actions = window['app-bridge']['actions'];
+            var Button = actions.Button;
+            var TitleBar = actions.TitleBar;
 
             var app = createApp({
                 apiKey: '{{ config('shopify-app.api_key') }}',
                 shopOrigin: '{{ \Illuminate\Support\Facades\Auth::user()->name }}',
                 forceRedirect: true,
+            });
+            var button = Button.create(app, {label: 'Help'});
+
+            TitleBar.create(app, {
+                buttons: {
+                    primary: button,
+                },
+            });
+            button.subscribe(Button.Action.CLICK, data => {
+                window.open('https://help.fuznet.com/en/category/go-back-8sa7tu/','_blank');
             });
 
 
