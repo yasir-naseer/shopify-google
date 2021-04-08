@@ -7,6 +7,7 @@ use App\Jobs\ProductSyncJob;
 use App\Product;
 use App\ProductVariant;
 use App\Setting;
+use App\Jobs\GoogleUpdate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -1269,6 +1270,7 @@ class ProductController extends Controller
             $product->description=$description[$productid];
             if($product->save())
             {
+                GoogleUpdate::dispatch($product,$request);
                 $google->updateProduct($product,$request);
             }
         }
