@@ -24,6 +24,7 @@
         var actions = window['app-bridge']['actions'];
         var Button = actions.Button;
         var TitleBar = actions.TitleBar;
+        var Toast=actions.Toast;
 
         var app = createApp({
             apiKey: '{{ config('shopify-app.api_key') }}',
@@ -40,6 +41,27 @@
         button.subscribe(Button.Action.CLICK, data => {
             window.open('https://merchants.google.com/mc/reporting/dashboard/','_blank');
         });
+        var msg = '{{\Illuminate\Support\Facades\Session::get('msg')}}';
+        var error='{{\Illuminate\Support\Facades\Session::get('error')}}';
+        if(msg!=='')
+        {
+            const toastOptions = {
+                message: msg,
+                duration: 3000,
+            };
+            const toastNotice = Toast.create(app, toastOptions);
+            toastNotice.dispatch(Toast.Action.SHOW);
+        }
+        if(error!=='')
+        {
+            const toastOptions = {
+                message: msg,
+                duration: 3000,
+                isError: true
+            };
+            const toastNotice = Toast.create(app, toastOptions);
+            toastNotice.dispatch(Toast.Action.SHOW);
+        }
 
 
     </script>
