@@ -12,17 +12,18 @@ use Illuminate\Queue\SerializesModels;
 class GoogleUpdateJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $product,$request;
+    public $product,$shop,$request;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($product,$request)
+    public function __construct($product,$shop,$request)
     {
         $this->product=$product;
         $this->request=$request;
+        $this->shop=$shop;
     }
 
     /**
@@ -33,6 +34,6 @@ class GoogleUpdateJob implements ShouldQueue
     public function handle()
     {
         $google=new GoogleController();
-        $google->updateProduct($this->product,$this->request);
+        $google->updateProduct($this->product,$this->shop,$this->request);
     }
 }

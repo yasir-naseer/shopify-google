@@ -24,7 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="88aa4065-8e67-4061-97e6-eed874fc687b" name="Default Changelist" comment="Queue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GoogleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GoogleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/GoogleUpdateJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/GoogleUpdateJob.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +196,7 @@
       <updated>1617909432842</updated>
       <workItem from="1617909433948" duration="721000" />
       <workItem from="1617910205109" duration="222000" />
-      <workItem from="1617960283437" duration="1902000" />
+      <workItem from="1617960283437" duration="2404000" />
     </task>
     <task id="LOCAL-00001" summary="Queue">
       <created>1617910108095</created>
@@ -217,7 +219,21 @@
       <option name="project" value="LOCAL" />
       <updated>1617910381667</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Queue">
+      <created>1617962879853</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1617962879853</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Queue">
+      <created>1617963110337</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1617963110337</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,10 +260,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617910357240" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1617961195528">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1617963113539">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617961195528" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617963113539" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1617961180795">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

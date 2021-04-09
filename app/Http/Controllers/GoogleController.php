@@ -78,9 +78,13 @@ class GoogleController extends Controller
 
     }
 
-    public function updateProduct($Product, $request=null,$type=null)
+    public function updateProduct($Product,$shop=null, $request=null,$type=null)
     {
-        $shop = Auth::user();
+
+        if ($shop===null)
+        {
+            $shop = Auth::user();
+        }
         $setting = Setting::where('shop', $shop->name)->first();
 
         $sizes = $Product->hasVariants->pluck('option1')->toArray();

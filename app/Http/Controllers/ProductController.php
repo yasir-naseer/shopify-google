@@ -1257,6 +1257,7 @@ class ProductController extends Controller
 
     public function bulkUpdate(Request $request)
     {
+        $shop=Auth::user();
         $google=new GoogleController();
         $titles=$request->input('title');
         $types=$request->input('type');
@@ -1270,7 +1271,7 @@ class ProductController extends Controller
             $product->description=$description[$productid];
             if($product->save())
             {
-                GoogleUpdateJob::dispatch($product,$request->all());
+                GoogleUpdateJob::dispatch($product,$shop,$request->all());
 //                $google->updateProduct($product,$request);
             }
         }
