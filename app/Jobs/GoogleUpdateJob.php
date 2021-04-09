@@ -34,7 +34,12 @@ class GoogleUpdateJob implements ShouldQueue
      */
     public function handle()
     {
-        $google=new GoogleController();
-        $google->updateProduct($this->product,$this->shop,$this->request);
+        try {
+            $google=new GoogleController();
+            $google->updateProduct($this->product,$this->shop,$this->request);
+        }catch (\Exception $exception)
+        {
+
+        }
     }
 }
