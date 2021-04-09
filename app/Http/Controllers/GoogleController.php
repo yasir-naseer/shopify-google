@@ -79,7 +79,7 @@ class GoogleController extends Controller
     }
 
     public function updateProduct($Product,$shop=null, $request=null,$type=null)
-    {.3
+    {
 
         if ($shop===null)
         {
