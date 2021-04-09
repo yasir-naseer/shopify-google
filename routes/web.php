@@ -43,6 +43,11 @@ Route::group(['middleware' => ['auth.shopify', 'billable']], function () {
 });
 
 
+Route::post('/gdpr',function (\Illuminate\Http\Request  $request){
+    return true;
+});
+
+
 
 
 //Auth::routes();

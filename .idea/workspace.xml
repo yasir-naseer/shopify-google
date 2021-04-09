@@ -24,9 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="88aa4065-8e67-4061-97e6-eed874fc687b" name="Default Changelist" comment="Queue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GoogleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GoogleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/GoogleUpdateJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/GoogleUpdateJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +194,8 @@
       <updated>1617909432842</updated>
       <workItem from="1617909433948" duration="721000" />
       <workItem from="1617910205109" duration="222000" />
-      <workItem from="1617960283437" duration="2404000" />
+      <workItem from="1617960283437" duration="5818000" />
+      <workItem from="1617990955482" duration="51000" />
     </task>
     <task id="LOCAL-00001" summary="Queue">
       <created>1617910108095</created>
@@ -233,7 +232,112 @@
       <option name="project" value="LOCAL" />
       <updated>1617963110337</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Queue">
+      <created>1617963390262</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1617963390262</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Queue">
+      <created>1617963715131</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1617963715131</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Queue">
+      <created>1617963973152</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1617963973152</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Queue">
+      <created>1617964073685</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1617964073685</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Queue">
+      <created>1617964259106</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1617964259106</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Queue">
+      <created>1617964372025</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1617964372025</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Queue">
+      <created>1617964477873</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1617964477873</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Queue">
+      <created>1617964695830</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1617964695830</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Queue">
+      <created>1617965159472</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1617965159472</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Queue">
+      <created>1617965295609</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1617965295609</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Queue">
+      <created>1617965350031</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1617965350031</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Queue">
+      <created>1617965494562</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1617965494563</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Queue">
+      <created>1617965763548</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1617965763548</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Queue">
+      <created>1617965939968</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1617965939968</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Queue">
+      <created>1617965994587</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1617965994587</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,10 +364,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617910357240" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1617963113539">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1617965997735">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617963113539" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617965997735" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1617961180795">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
