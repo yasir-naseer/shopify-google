@@ -1271,6 +1271,7 @@ class ProductController extends Controller
             $product->description=$description[$productid];
             if($product->save())
             {
+                dd($request->all());
                 GoogleUpdateJob::dispatch($product,$shop,$request->all());
 //                $google->updateProduct($product,$request);
             }
