@@ -13,6 +13,7 @@ class GoogleUpdateJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $product,$shop,$request;
+    public $tries = 3;
 
     /**
      * Create a new job instance.
