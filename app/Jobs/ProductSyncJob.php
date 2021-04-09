@@ -32,7 +32,7 @@ class ProductSyncJob implements ShouldQueue
      */
     public function handle()
     {
-        $con=new ProductController();
-        $con->createProduct($this->product,$this->shop);
+//        $con=new ProductController();
+//        $con->createProduct($this->product,$this->shop);
     }
 }
