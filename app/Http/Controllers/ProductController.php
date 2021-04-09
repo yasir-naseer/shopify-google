@@ -1270,8 +1270,8 @@ class ProductController extends Controller
             $product->description=$description[$productid];
             if($product->save())
             {
-                GoogleUpdateJob::dispatch($product,$request);
-                $google->updateProduct($product,$request);
+                GoogleUpdateJob::dispatch($product,$request->all());
+//                $google->updateProduct($product,$request);
             }
         }
         return redirect()->route('home')->with('mgs','Products Updated on Google Merchant Center!');

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -22,7 +25,6 @@
     <list default="true" id="88aa4065-8e67-4061-97e6-eed874fc687b" name="Default Changelist" comment="Queue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/GoogleUpdate.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +193,8 @@
       <option name="presentableId" value="Default" />
       <updated>1617909432842</updated>
       <workItem from="1617909433948" duration="721000" />
-      <workItem from="1617910205109" duration="154000" />
+      <workItem from="1617910205109" duration="222000" />
+      <workItem from="1617960283437" duration="1902000" />
     </task>
     <task id="LOCAL-00001" summary="Queue">
       <created>1617910108095</created>
@@ -200,7 +203,21 @@
       <option name="project" value="LOCAL" />
       <updated>1617910108095</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Queue">
+      <created>1617910375864</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1617910375864</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Queue">
+      <created>1617910381667</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1617910381667</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,13 +244,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617910357240" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1617910126723">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1617961195528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617910126723" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1617909469695">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617961195528" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1617961180795">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1617909469695" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1617961180795" />
   </component>
 </project>
