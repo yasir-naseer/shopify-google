@@ -1276,6 +1276,7 @@ class ProductController extends Controller
                 $data['body_html']=$product->description;
                 $data['type']=$product->type;
                 $data=json_decode(json_encode($data),FALSE);
+                dd($product,$shop,$data);
                 GoogleUpdateJob::dispatch($product,$shop,$data);
 //                $google->updateProduct($product,$request);
             }
