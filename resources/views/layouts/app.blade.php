@@ -67,12 +67,23 @@
                 window.open('https://help.fuznet.com/en/category/go-back-8sa7tu/','_blank');
             });
 
-            var msg = '{{\Illuminate\Support\Facades\Session::get('msg')}}'
+            var msg = '{{\Illuminate\Support\Facades\Session::get('msg')}}';
+            var error='{{\Illuminate\Support\Facades\Session::get('error')}}';
             if(msg!=='')
             {
                 const toastOptions = {
                     message: msg,
                     duration: 3000,
+                };
+                const toastNotice = Toast.create(app, toastOptions);
+                toastNotice.dispatch(Toast.Action.SHOW);
+            }
+            if(error!=='')
+            {
+                const toastOptions = {
+                    message: msg,
+                    duration: 3000,
+                    isError: true
                 };
                 const toastNotice = Toast.create(app, toastOptions);
                 toastNotice.dispatch(Toast.Action.SHOW);
