@@ -1281,7 +1281,7 @@ class ProductController extends Controller
 //                $google->updateProduct($product,$request);
             }
         }
-        return redirect()->route('home')->with('mgs','Products will be updated on Google Merchant Center!');
+        return redirect()->route('home')->with('msg','Products will be updated on Google Merchant Center!');
     }
 
     public function updateProductAll($id,Request $request)
