@@ -49,6 +49,7 @@
             var actions = window['app-bridge']['actions'];
             var Button = actions.Button;
             var TitleBar = actions.TitleBar;
+            var Toast=actions.Toast;
 
             var app = createApp({
                 apiKey: '{{ config('shopify-app.api_key') }}',
@@ -65,6 +66,17 @@
             button.subscribe(Button.Action.CLICK, data => {
                 window.open('https://help.fuznet.com/en/category/go-back-8sa7tu/','_blank');
             });
+
+            var msg = '{{\Illuminate\Support\Facades\Session::get('msg')}}'
+            if(msg!=='')
+            {
+                const toastOptions = {
+                    message: msg,
+                    duration: 3000,
+                };
+                const toastNotice = Toast.create(app, toastOptions);
+                toastNotice.dispatch(Toast.Action.SHOW);
+            }
 
 
         </script>
