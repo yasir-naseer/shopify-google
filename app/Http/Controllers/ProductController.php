@@ -8,6 +8,7 @@ use App\Product;
 use App\ProductVariant;
 use App\Setting;
 use App\Jobs\GoogleUpdateJob;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -1257,8 +1258,7 @@ class ProductController extends Controller
 
     public function bulkUpdate(Request $request)
     {
-        $shop=Auth::user();
-        $google=new GoogleController();
+        $shop=User::find(Auth::id());
         $titles=$request->input('title');
         $types=$request->input('type');
         $description=$request->input('description');
