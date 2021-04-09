@@ -1271,12 +1271,15 @@ class ProductController extends Controller
             $product->description=$description[$productid];
             if($product->save())
             {
-                dd($request->all());
-                GoogleUpdateJob::dispatch($product,$shop,$request->all());
+                $data=[];
+                $data['title']=$product->title;
+                $data['body_html']=$product->description;
+                $data['type']=$product->type;
+                GoogleUpdateJob::dispatch($product,$shop,$data);
 //                $google->updateProduct($product,$request);
             }
         }
-        return redirect()->route('home')->with('mgs','Products Updated on Google Merchant Center!');
+        return redirect()->route('home')->with('mgs','Products will be updated on Google Merchant Center!');
     }
 
     public function updateProductAll($id,Request $request)
